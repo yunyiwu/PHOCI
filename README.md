@@ -205,7 +205,7 @@ Special thanks to the following team members for their contributions:
 
 ## License
 
-This project is open-source under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is open-source under the GNU General Public License v3.0. See the [LICENSE](LICENSE) file for details.
 
 ---
 
