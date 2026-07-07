@@ -194,13 +194,7 @@ The `environment.yml` file includes the following key dependencies:
 
 ## Contributors
 
-Special thanks to the following team members for their contributions:
-- Yunyi Wu
-- Xing Jiang
-- Zhi Yang
-- Yanqing Wang
-- Lipeng Li
-- Jinsheng Xu
+Special thanks to the team members for their contributions.
 
 ---
 
