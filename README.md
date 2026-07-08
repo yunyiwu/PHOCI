@@ -194,14 +194,12 @@ The `environment.yml` file includes the following key dependencies:
 
 ## Contributors
 
-Special thanks to the team members for their contributions:
-Yunyi Wu
-Xing Jiang
-Zhi Yang
-Yanqing Wang
-Lipeng Li
-Jinsheng Xu
+Special thanks to the team members for their valuable contributions to this project:
 
+*   **Yunyi Wu**, **Zhi Yang**, **Yanqing Wang**, and **Kai Huang** (Huang Lab, Institute of Systems and Physical Biology, Shenzhen Bay Laboratory)
+*   **Xing Jiang** and **Chen Yu** (Yu Lab, Institute of Cancer Research, Shenzhen Bay Laboratory)
+*   **Lipeng Li** (Institute of Systems and Physical Biology, Shenzhen Bay Laboratory)
+*   **Jinsheng Xu** and **Chunhui Hou** (Hou Lab, State Key Laboratory of Genetic Resources and Evolution, Kunming Institute of Zoology, Chinese Academy of Sciences)
 ---
 
 ## License
