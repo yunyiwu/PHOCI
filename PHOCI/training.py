@@ -14,8 +14,7 @@ from sklearn import metrics
 from config import config_train
 import models
 from aggregator import MaxminMeanAggregator
-from data_load import load_val
-from batch import HEBatchGenerator
+from batch import HEBatchGenerator, load_val
 
 print("GM12878")
 
