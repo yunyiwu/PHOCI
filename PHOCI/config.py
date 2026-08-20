@@ -10,6 +10,37 @@ def create_directories_if_not_exists(path):
 
     return True
 
+###########################set by users########################
+train_cell_line = "GM12878"
+config_train = {}
+
+chro = "chr0"
+
+config_train["train_test_cell_name"] = train_cell_line+"_"+test_cell_line
+
+config_train["model_dir"] = "/public/home/wuyy/models/"+train_cell_line+"_"+test_cell_line+"_hypergcl"
+
+config_train["hic_dir_path"] = "/public/home/wuyy/"+train_cell_line+"_hg38/hic_mcool/"
+config_train["porec_dir_path"] = "/public/home/wuyy/Hi_Pore_c/"+train_cell_line+"/"
+config_train["feature_dir_path"] = "/public/home/wuyy/"+train_cell_line+"_hg38/bigwig_features/"
+
+config_train["edge_file_name"] = train_cell_line+f"_chr_{chro}_index_5000.npy"
+config_train["weight_file_name"] = train_cell_line+f"_chr_{chro}_attr_5000.npy"
+config_train["feature_file_name"] = train_cell_line+f"_{chro}_x.npy"
+config_train["hyperedge_file_name"] = train_cell_line+f"_{chro}_hypergraph_5000"
+
+config_train["porec_dirs"] = glob.glob(config_train["porec_dir_path"]+"/*_hyper/")
+
+config_train["learning_rate"] = 0.01
+config_train["encoder_hidden_channel"] = 1024
+config_train["encoder_out_channel"] = 128
+config_train["num_layers"] = 5
+
+config_train["chr_names"] = ["chr1", "chr2", "chr3", "chr4", "chr5", "chr6", "chr7", "chr8",
+                "chr10", "chr11", "chr12","chr16", "chr17", "chr18", "chr20", "chr21"]
+
+config_train["test_chr_names"] = ["chr13", "chr14", "chr15", "chrX", "chr22"]
+
 config_test = {}
 chro = "chr0"
 
