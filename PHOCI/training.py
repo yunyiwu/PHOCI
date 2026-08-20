@@ -1,31 +1,23 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-import torch 
+import time
+import random
+import pickle
+import torch
 import torch.nn as nn
 import numpy as np
-from torch.nn import Parameter
-import torch.nn.functional as F
-import torch.optim as optim
 from sklearn import metrics
-import os
 
-from config import config_train, config_test
-
+from config import config_train
 import models
-from aggregator import *
-from generator import MLPgenerator
+from aggregator import MaxminMeanAggregator
+from data_load import load_val
+from batch import HEBatchGenerator
 
-import utils
-
-from batch import HEBatchGenerator, load_val
-
-import pickle
-import random
+print("GM12878")
 
 def model_train(bce_loss, clip, bs, data, model, Aggregator, optim, hedges, labels, train_pred, train_label, device):
-    
-    
     batch_size = len(hedges) 
 
     model.train()
@@ -55,11 +47,11 @@ def model_train(bce_loss, clip, bs, data, model, Aggregator, optim, hedges, labe
     optim.step()
 
     for _, param in model.named_parameters():
-        param.clamp(-clip,clip)
+        param.clamp(-clip, clip)
     for _, param in Aggregator.named_parameters():
-        param.clamp(-clip,clip)
+        param.clamp(-clip, clip)
         
-    return loss.item(),  train_pred, train_label
+    return loss.item(), train_pred, train_label
 
 
 def model_eval(data, test_batchloader, model, Aggregator):
@@ -72,29 +64,80 @@ def model_eval(data, test_batchloader, model, Aggregator):
 
         v = model(data.x, data.edge_index, data.edge_attr)
         
-        while True :
+        while True:
             hedges, labels, is_last = test_batchloader.next()
             batch_size = len(hedges)
-            num_data+=batch_size
+            num_data += batch_size
                 
-            for hedge in hedges :
+            for hedge in hedges:
                 embeddings = v[hedge]
                 max_min_dist = torch.max(hedge) - torch.min(hedge)
-                pred, _ = Aggregator(max_min_dist,embeddings)
+                pred, _ = Aggregator(max_min_dist, embeddings)
                 total_pred.append(pred.detach())
             test_label.append(labels.detach())
             
-            if is_last :
+            if is_last:
                 break
+                
         total_pred = torch.stack(total_pred)       
         test_label = torch.cat(test_label, dim=0)
         
-
     return total_pred.tolist(), test_label.tolist()
 
 
-def evaluate(data):
+device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
+
+dim_edge = 400
+dim_vertex = 400
+
+alpha_e = 0
+alpha_v = 0
+
+input_dim = 15 #features_num
+
+# Hyperparameters
+n_layers = 3
+size = 1000
+nv = size
+memory_size = 0
+lr = 0.0001
+bs = 1024
+clip = 0.01
+
+sliding_data = []
+
+for chr_name in config_train["chr_names"]:
+    with open("chrom_data/GM12878/"+chr_name+"_sliding_data", "rb") as f:
+        sliding_data_ = pickle.load(f)
+    sliding_data.extend(sliding_data_)
+        
+print(len(sliding_data))
+
+random.shuffle(sliding_data)
+
+with open("chrom_data/GM12878/chr15_sliding_data", "rb") as f:
+    test_data1 = pickle.load(f)
     
+with open("chrom_data/K562/chr15_sliding_data", "rb") as f:
+    test_data2 = pickle.load(f)
+
+model_dir = False
+
+model = models.GCNEncoder(input_dim, dim_vertex, dim_vertex, n_layers)
+model.to(device)
+
+if model_dir:
+    model.load_state_dict(torch.load(model_dir+"model_epoch_4"))
+
+cls_layers = [dim_vertex*2+2, dim_vertex, 256, 128, 32, 8, 1] 
+Aggregator = MaxminMeanAggregator(dim_vertex, cls_layers)
+Aggregator.to(device)
+
+if model_dir:
+    Aggregator.load_state_dict(torch.load(model_dir+"Aggregator_epoch_4"))
+
+
+def evaluate(data):
     data = data.to(device)
         
     test_batchloader = load_val(data.hyper_edge, bs, device, label="pos")
@@ -108,113 +151,27 @@ def evaluate(data):
     test_batchloader = load_val(data.sns, bs, device, label="sns")
     val_pred_sns, total_label_sns = model_eval(data, test_batchloader, model, Aggregator)
     sns_auc = metrics.roc_auc_score(total_label_sns+total_label_pos, val_pred_sns+val_pred_pos)
-    sns_ap = metrics.average_precision_score(total_label_sns+total_label_pos, val_pred_sns+val_pred_pos)        
+    sns_ap = metrics.average_precision_score(total_label_sns+total_label_pos, val_pred_sns+val_pred_pos)       
         
     test_batchloader = load_val(data.cns, bs, device, label="cns")
     val_pred_cns, total_label_cns = model_eval(data, test_batchloader, model, Aggregator)
     cns_auc = metrics.roc_auc_score(total_label_cns+total_label_pos, val_pred_cns+val_pred_pos)
-    cns_ap = metrics.average_precision_score(total_label_cns+total_label_pos, val_pred_cns+val_pred_pos)        
+    cns_ap = metrics.average_precision_score(total_label_cns+total_label_pos, val_pred_cns+val_pred_pos)       
         
     print("Val mns AUC:"+str(mns_auc)+",Val mns AP:"+str(mns_ap))
     print("Val sns AUC:"+str(sns_auc)+",Val sns AP:"+str(sns_ap))
     print("Val cns AUC:"+str(cns_auc)+",Val cns AP:"+str(cns_ap))
 
 
-device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
-
-
-dim_edge = 400
-dim_vertex = 400
-
-alpha_e = 0
-alpha_v = 0
-
-input_dim = 15  #features_num
-
-n_layers = 1
-
-size = 1000
-nv = size
-
-memory_size = 0
-
-lr = 0.0001
-
-bs = 1024
-
-memory_size = 0
-clip = 0.01
-n_layers = 3
-
-
-sliding_data = []
-
-for chr_name in config_train["chr_names"]:
-    
-    with open("chrom_data/GM12878/"+chr_name+"_sliding_data","rb") as f:
-        sliding_data_ = pickle.load(f)
-
-    sliding_data.extend(sliding_data_)
-    
-    
-for chr_name in config_train["chr_names"]:
-    
-    with open("chrom_data/K562/"+chr_name+"_sliding_data","rb") as f:
-        sliding_data_ = pickle.load(f)
-
-    sliding_data.extend(sliding_data_)
-        
-
-random.shuffle(sliding_data)
-
-
-with open("chrom_data/GM12878/chr15_sliding_data","rb") as f:
-    test_data1 = pickle.load(f)
-    
-with open("chrom_data/K562/chr15_sliding_data","rb") as f:
-    test_data2 = pickle.load(f)
-
-
-
-model_dir = False
-
-
-model = models.GCNEncoder(input_dim, dim_vertex, dim_vertex, n_layers)
-
-model.to(device)
-
-
-last_epoch = 0
-
-if model_dir:
-    model.load_state_dict(torch.load(model_dir+"model_epoch_"+str(last_epoch)))
-
-
-
-cls_layers = [dim_vertex*2+2, dim_vertex, 256, 128, 32, 8, 1] 
-Aggregator = MaxminMeanAggregator(dim_vertex, cls_layers)
-Aggregator.to(device)
-
-if model_dir:
-    Aggregator.load_state_dict(torch.load(model_dir+"Aggregator_epoch_"+str(last_epoch)))
-
-
-
 best_roc = 0
 best_epoch = 0 
 optim = torch.optim.Adam(list(model.parameters())+list(Aggregator.parameters()), lr=lr)
 
-
 bce_loss = nn.BCELoss()
-
-
-import time
-
 
 epoch_num = 100
 
-
-for epoch in range(0,epoch_num):
+for epoch in range(epoch_num):
     
     s = time.time()
     
@@ -254,8 +211,7 @@ for epoch in range(0,epoch_num):
         
             if is_last:
                 break
-            
-    
+                
         train_pred = torch.stack(train_pred)
         train_pred = train_pred.squeeze()
         train_label = torch.round(torch.cat(train_label, dim=0))        
@@ -264,13 +220,11 @@ for epoch in range(0,epoch_num):
         
         print("Epoch:"+str(epoch)+",Dloss:"+str(loss_sum)+",Train_AUC:"+str(train_auc)+",Train_AP:"+str(train_ap))
         
-    torch.save(model.state_dict(), "models/all/model_epoch_"+str(epoch))
-    torch.save(Aggregator.state_dict(), "models/all/Aggregator_epoch_"+str(epoch))
+    torch.save(model.state_dict(), "models/GM12878/model_epoch_"+str(epoch))
+    torch.save(Aggregator.state_dict(), "models/GM12878/Aggregator_epoch_"+str(epoch))
         
-
-    if epoch == 500:
-        
-        rand_index = random.randint(0, len(test_data1))
+    if epoch%10 == 0:
+        rand_index = random.randint(0, len(test_data1) - 1)
         print(rand_index)
         print("Same cell line:")
         evaluate(test_data1[rand_index])
@@ -279,4 +233,3 @@ for epoch in range(0,epoch_num):
     
     e = time.time()
     print(e-s)
-
