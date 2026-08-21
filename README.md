@@ -156,17 +156,30 @@ pip install efficient-apriori==2.0.5
 ```
 ---
 
-### Overview of Environment File
+### Docker Containerization
+To avoid potential system-level driver mismatches or C++ extension build errors, we provide a pre-configured `Dockerfile` based on NVIDIA CUDA 11.7.1.
 
-The `environment.yml` file includes the following key dependencies:
-- **Python**: Version 3.8 or later.
-- **Main Frameworks and Tools**:
-  - PyTorch
-  - NumPy, Pandas
-  - Scikit-learn
-  - Matplotlib, Seaborn
-  - NetworkX
-  - Other relevant libraries (see file details for more).
+1. **Build the Docker Image**:
+```bash
+docker build -t phoci:latest .
+
+```
+
+2. **Run Container with GPU Support**:
+```bash
+docker run --gpus all -it --rm -v $(pwd):/workspace/PHOCI phoci:latest
+
+### Overview of Environment Dependencies
+
+The `environment.yml` pins all essential packages for running PHOCI:
+
+* **Python**: `3.8`
+* **Deep Learning Stack**: PyTorch (2.0.1, CUDA 11.7) & PyTorch Geometric (PyG 2.5.2)
+* **3D Genomics Analysis**: `cooler`, `bioframe`, `pyBigWig`, `pyfaidx`, `trackc`, `hicstraw`
+* **Scientific Computing**: NumPy, Pandas, SciPy, Scikit-learn
+* **Data Visualization**: Matplotlib, Seaborn
+
+> **Note**: See `environment.yml` for the complete list of pinned dependencies.
 
 ---
 
