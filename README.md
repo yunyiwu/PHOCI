@@ -54,25 +54,105 @@ The following outlines the main files and directories in this project:
 
 ## Quick Start
 
+### Prerequisites
+
+Ensure you have [Conda](https://docs.conda.io/en/latest/miniconda.html) installed on your system.
+
 ### Environment Setup
 
-To streamline the installation process, use the provided `environment.yml` file to quickly create and configure a virtual environment. Ensure [conda](https://docs.conda.io/en/latest/miniconda.html) is installed, then follow these steps:
+To streamline the installation process, use the provided `environment.yml` file to quickly create and configure a virtual environment.
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yunyiwu/PHOCI.git
+   git clone [https://github.com/yunyiwu/PHOCI.git](https://github.com/yunyiwu/PHOCI.git)
    cd PHOCI
-   ```
+
+```
 
 2. **Create and activate the environment**:
-   ```bash
-   conda env create -f environment.yml
-   conda activate phoci
-   ```
+```bash
+conda env create -f environment.yml
+conda activate phoci
+
+```
+
+
+> **Note**: If `conda env create fails due to some reasons, follow the **Alternative Setup** below.
+
 
 3. **Run the project**:
-   Execute the required scripts or applications as per your project needs.
+Execute the required scripts or applications as per your project needs.
 
+---
+
+### Alternative Setup (Manual Installation)
+
+If installation via `environment.yml` fails or hangs, you can manually build the environment step-by-step:
+
+1. **Clone the repository**:
+```bash
+git clone https://github.com/yunyiwu/PHOCI.git
+cd PHOCI
+
+```
+
+
+2. **Step-by-step Installation**:
+* **Step 1: Create base Python 3.8 environment**
+```bash
+conda create -n phoci python=3.8 -y
+conda activate phoci
+
+```
+
+
+* **Step 2: Upgrade basic build tools**
+```bash
+pip install --upgrade pip setuptools wheel
+
+```
+
+
+* **Step 3: Install PyTorch and CUDA 11.7 ecosystem**
+```bash
+conda install pytorch=2.0.1 torchvision=0.15.2 torchaudio=2.0.2 pytorch-cuda=11.7 -c pytorch -c nvidia -y
+
+```
+
+
+* **Step 4: Install core data science packages**
+```bash
+conda install pandas=1.5.3 numpy=1.24.3 scipy=1.10.1 scikit-learn=1.3.2 matplotlib=3.7.2 seaborn=0.12.2 h5py=3.11.0 notebook=6.5.7 -c conda-forge -y
+
+```
+
+
+* **Step 5: Install PyTorch Geometric (PyG)**
+```bash
+conda install pyg=2.5.2 -c pyg -y
+
+```
+
+
+* **Step 6: Install PyG C++ extensions**
+```bash
+pip install torch-scatter==2.1.2+pt20cu117 torch-sparse==0.6.18+pt20cu117 torch-cluster==1.6.3+pt20cu117 torch-spline-conv==1.2.2+pt20cu117 -f https://data.pyg.org/whl/torch-2.0.0+cu117.html
+
+```
+
+
+* **Step 7: Install 3D genomics / Hi-C analysis tools**
+```bash
+pip install cooler==0.9.3 bioframe==0.3.3 pybigwig==0.3.22 pyfaidx==0.8.1.2 trackc==0.0.18 hicstraw
+
+```
+
+
+* **Step 8: Install utilities**
+```bash
+pip install torchmetrics==1.4.1 lightning-utilities==0.11.6 aiohttp==3.10.3 pyyaml==6.0.2 tqdm==4.66.5
+
+```
 ---
 
 ### Overview of Environment File
