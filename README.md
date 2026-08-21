@@ -42,7 +42,11 @@ The following outlines the main files and directories in this project:
 |-- plot_results.py               # Result visualization tools
 |-- random_walk.py                # Random walk generation script
 |-- README.md                     # Project documentation
-|-- run_data_process_for_prediction.py   # Main data processing script
+|-- run_data_process_for_prediction.py   # Main data processing script for prediction
+|-- run_data_process_for_training.py   # Main data processing script for training
+|-- training.py                   # Training script using GM12878 cell-line as example
+|-- make_splits_val.py            # Negative sampling script
+|-- sampler.py                    # Negative sampling script
 `-- utils.py                      # General utility module
 ```
 
