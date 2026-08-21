@@ -10,11 +10,13 @@ def create_directories_if_not_exists(path):
 
     return True
 
+config_train = {}
+config_test = {}
+chro = "chr0"
+
 ###########################set by users########################
 train_cell_line = "GM12878"
-config_train = {}
 
-chro = "chr0"
 
 config_train["train_test_cell_name"] = train_cell_line+"_"+test_cell_line
 
@@ -41,8 +43,7 @@ config_train["chr_names"] = ["chr1", "chr2", "chr3", "chr4", "chr5", "chr6", "ch
 
 config_train["test_chr_names"] = ["chr13", "chr14", "chr15", "chrX", "chr22"]
 
-config_test = {}
-chro = "chr0"
+
 
 ###########################set by users########################
 test_cell_line = "H1"
