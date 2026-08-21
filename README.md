@@ -147,7 +147,7 @@ pip install hicstraw
 
 # Option B: Install from a local pre-built wheel (if PyPI build fails, and for Linux only)
 # pip install third_party_packages/hic_straw-1.3.1-cp38-cp38-linux_x86_64.whl
-
+```
 
 * **Step 7: Install utilities**
 ```bash
