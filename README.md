@@ -66,16 +66,14 @@ To streamline the installation process, use the provided `environment.yml` file 
    ```bash
    git clone [https://github.com/yunyiwu/PHOCI.git](https://github.com/yunyiwu/PHOCI.git)
    cd PHOCI
-
-```
+   ```
 
 2. **Create and activate the environment**:
-```bash
-conda env create -f environment.yml
-conda activate phoci
+   ```bash
+   conda env create -f environment.yml
+   conda activate phoci
 
-```
-
+   ```
 
 > **Note**: If `conda env create fails due to some reasons, follow the **Alternative Setup** below.
 
