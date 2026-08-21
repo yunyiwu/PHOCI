@@ -168,6 +168,7 @@ docker build -t phoci:latest .
 2. **Run Container with GPU Support**:
 ```bash
 docker run --gpus all -it --rm -v $(pwd):/workspace/PHOCI phoci:latest
+```
 
 ### Overview of Environment Dependencies
 
