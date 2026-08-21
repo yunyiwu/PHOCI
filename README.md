@@ -152,7 +152,7 @@ pip install hicstraw
 * **Step 7: Install utilities**
 ```bash
 pip install torchmetrics==1.4.1 lightning-utilities==0.11.6 aiohttp==3.10.3 pyyaml==6.0.2 tqdm==4.66.5
-
+pip install efficient-apriori==2.0.5
 ```
 ---
 
