@@ -61,8 +61,14 @@ RUN pip install --no-cache-dir \
     bioframe==0.3.3 \
     pybigwig==0.3.22 \
     pyfaidx==0.8.1.2 \
-    trackc==0.0.18 \
-    hicstraw
+    trackc==0.0.18
+
+# Copy local third-party wheel into the build stage for installation
+COPY third_party_packages/hic_straw-1.3.1-cp38-cp38-linux_x86_64.whl /tmp/
+
+# Install hicstraw directly from the local pre-compiled wheel
+RUN pip install --no-cache-dir /tmp/hic_straw-1.3.1-cp38-cp38-linux_x86_64.whl && \
+    rm /tmp/hic_straw-1.3.1-cp38-cp38-linux_x86_64.whl
 
 # Step 7: Install utility and helper packages
 RUN pip install --no-cache-dir \
