@@ -1,0 +1,43 @@
+# --- Base Build & Runtime ---
+setuptools
+wheel
+
+# --- Core Deep Learning & PyTorch Stack (CUDA 11.7) ---
+torch==2.0.1
+torchvision==0.15.2
+torchaudio==2.0.2
+
+# --- PyTorch Geometric (PyG) & Pre-compiled C++ Extensions ---
+# Specify index link for PyG CUDA 11.7 wheels
+--find-links https://data.pyg.org/whl/torch-2.0.0+cu117.html
+torch-geometric==2.5.2
+torch-scatter==2.1.2+pt20cu117
+torch-sparse==0.6.18+pt20cu117
+torch-cluster==1.6.3+pt20cu117
+torch-spline-conv==1.2.2+pt20cu117
+
+# --- Core Data Science & Scientific Computing ---
+pandas==1.5.3
+numpy==1.24.3
+scipy==1.10.1
+scikit-learn==1.3.2
+matplotlib==3.7.2
+seaborn==0.12.2
+h5py==3.11.0
+notebook==6.5.7
+
+# --- 3D Genomics & Hi-C Analysis Tools ---
+cooler==0.9.3
+bioframe==0.3.3
+pybigwig==0.3.22
+pyfaidx==0.8.1.2
+trackc==0.0.18
+hic-straw==1.3.1
+
+# --- Utilities & Helper Packages ---
+torchmetrics==1.4.1
+lightning-utilities==0.11.6
+aiohttp==3.10.3
+pyyaml==6.0.2
+tqdm==4.66.5
+efficient-apriori==2.0.5
