@@ -200,8 +200,8 @@ The `environment.yml` pins all essential packages for running PHOCI:
    ###########################set by users########################
    test_cell_line = "H1"
 
-   config_test["hic_file"] = "/public/home/wuyy/H1_hg38/4DNFID162B9J.hic"
-   config_test["bigwig_dir"] = "/public/home/wuyy/H1_hg38/bigwigs/"
+   config_test["hic_file"] = "raw_data/H1_hg38/4DNFID162B9J.hic"
+   config_test["bigwig_dir"] = "raw_data/H1_hg38/bigwigs/"
    config_test["bigwigs"] = [
        "ENCFF493QWY",
        "ENCFF314KQD",
