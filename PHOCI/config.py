@@ -10,6 +10,34 @@ def create_directories_if_not_exists(path):
 
     return True
 
+CELL_LINE_BIGWIGS = {
+    "GM12878": [
+        "ENCFF003DXG", "ENCFF340JIF", "ENCFF039JOT", "ENCFF564KBE", "ENCFF380LZI",
+        "ENCFF683HCZ", "ENCFF599TRR", "ENCFF627OKN", "ENCFF479XIQ", "ENCFF601YET",
+        "ENCFF931USZ", "ENCFF485CGE", "ENCFF200WHZ", "ENCFF571ZJJ", "ENCFF603BJO"
+    ],
+    "K562": [
+        "ENCFF525ZRM", "ENCFF381NDD", "ENCFF928NWQ", "ENCFF761XBZ", "ENCFF440XMD",
+        "ENCFF812HRW", "ENCFF937QUK", "ENCFF959YJV", "ENCFF605FAF", "ENCFF494WCA",
+        "ENCFF544AVW", "ENCFF675GVW", "ENCFF124WLE", "ENCFF652NKM", "ENCFF754EAC"
+    ],
+    "A549": [
+        "ENCFF242FAU", "ENCFF070DKP", "ENCFF702IOJ", "ENCFF160YWB", "ENCFF473XIC",
+        "ENCFF142SPT", "ENCFF808VAQ", "ENCFF479HXK", "ENCFF417UUX", "ENCFF177CPK",
+        "ENCFF375NRQ", "ENCFF109XKO", "ENCFF774RVE", "ENCFF498DXU", "ENCFF872SDF"
+    ],
+    "HepG2": [
+        "ENCFF500VAH", "ENCFF022TZG", "ENCFF437XHN", "ENCFF576YVM", "ENCFF488DNL",
+        "ENCFF754ROM", "ENCFF053ROV", "ENCFF057BKO", "ENCFF330AIV", "ENCFF253PND",
+        "ENCFF655XBP", "ENCFF301SGJ", "ENCFF761IJZ", "ENCFF242MRW", "ENCFF664EJT"
+    ],
+    "H1": [
+        "ENCFF493QWY", "ENCFF314KQD", "ENCFF345VHG", "ENCFF088MXE", "ENCFF488THD",
+        "ENCFF183MHJ", "ENCFF084JKQ", "ENCFF860NVB", "ENCFF156JZY", "ENCFF296IBP",
+        "ENCFF401PZS", "ENCFF648BTZ", "ENCFF933YTR", "ENCFF002NBT", "4DNFICPNO4M5"
+    ]
+}
+
 config_train = {}
 config_test = {}
 chro = "chr0"
@@ -24,6 +52,8 @@ config_train["hic_dir_path"] = "data/"+train_cell_line+"_hg38/hic_mcool/"
 config_train["feature_dir_path"] = "data/"+train_cell_line+"_hg38/bigwig_features/"
 config_train["input_graph_dir_path"] = "data/"+train_cell_line+"_hg38/input_graph/"
 config_train["porec_dir_path"] = "raw_data/"+train_cell_line+"_hg38//hi_pore_c/"
+
+config_train["bigwigs"] =  CELL_LINE_BIGWIGS[train_cell_line]
 
 ###########################set by users########################
 
@@ -61,21 +91,7 @@ test_cell_line = "H1"
 
 config_test["hic_file"] = "raw_data/H1_hg38/4DNFID162B9J.hic"
 config_test["bigwig_dir"] = "raw_data/H1_hg38/bigwigs/"
-config_test["bigwigs"] =  [  "ENCFF493QWY",
-                    "ENCFF314KQD",
-                    "ENCFF345VHG",
-                    "ENCFF088MXE",
-                    "ENCFF488THD",
-                    "ENCFF183MHJ",
-                    "ENCFF084JKQ",
-                    "ENCFF860NVB",
-                    "ENCFF156JZY",
-                    "ENCFF296IBP",
-                    "ENCFF401PZS",
-                    "ENCFF648BTZ",
-                    "ENCFF933YTR",
-                    "ENCFF002NBT",
-                    "4DNFICPNO4M5" ]
+config_test["bigwigs"] =  CELL_LINE_BIGWIGS[test_cell_line]
 
 ###########################set by users########################
 
