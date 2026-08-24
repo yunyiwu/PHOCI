@@ -25,7 +25,7 @@ config_train["model_dir"] = "models/"+train_cell_line+"_"+test_cell_line+"_hyper
 config_train["hic_dir_path"] = "data/"+train_cell_line+"_hg38/hic_mcool/"
 config_train["feature_dir_path"] = "data/"+train_cell_line+"_hg38/bigwig_features/"
 config_train["input_graph_dir_path"] = "data/"+train_cell_line+"_hg38/input_graph/"
-config_train["porec_dir_path"] = "data/"+train_cell_line+"_hg38/Hi_Pore_C/"
+config_train["porec_dir_path"] = "raw_data/"+train_cell_line+"_hg38/Hi_Pore_C/"
 
 config_train["edge_file_name"] = train_cell_line+f"_chr_{chro}_index_5000.npy"
 config_train["weight_file_name"] = train_cell_line+f"_chr_{chro}_attr_5000.npy"
@@ -53,8 +53,8 @@ if train_cell_line == "K562":
 ###########################set by users########################
 test_cell_line = "H1"
 
-config_test["hic_file"] = "/public/home/wuyy/H1_hg38/4DNFID162B9J.hic"
-config_test["bigwig_dir"] = "/public/home/wuyy/H1_hg38/bigwigs/"
+config_test["hic_file"] = "raw_data/H1_hg38/4DNFID162B9J.hic"
+config_test["bigwig_dir"] = "raw_data/H1_hg38/bigwigs/"
 config_test["bigwigs"] =  [  "ENCFF493QWY",
                     "ENCFF314KQD",
                     "ENCFF345VHG",
