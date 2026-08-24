@@ -222,16 +222,16 @@ If you prefer to skip processing raw data, you can download the ready-to-use pro
 
 3. **Run Data Processing Scripts**:
 * **For Training Data Preprocessing**:
-```bash
-python run_data_process_for_training.py
-
-```
+   ```bash
+   python run_data_process_for_training.py
+   
+   ```
 
 * **For Prediction/Inference Data Preprocessing**:
-```bash
-python run_data_process_for_prediction.py
-
-```
+   ```bash
+   python run_data_process_for_prediction.py
+   
+   ```
 
 * All processed files will be automatically structured and saved under the corresponding data directories configured in `config.py`.
 
