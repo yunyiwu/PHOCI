@@ -23,7 +23,7 @@ config_train["model_dir"] = "models/"+train_cell_line+"_"+test_cell_line+"_hyper
 config_train["hic_dir_path"] = "data/"+train_cell_line+"_hg38/hic_mcool/"
 config_train["feature_dir_path"] = "data/"+train_cell_line+"_hg38/bigwig_features/"
 config_train["input_graph_dir_path"] = "data/"+train_cell_line+"_hg38/input_graph/"
-config_train["porec_dir_path"] = "raw_data/"+train_cell_line+"_hg38/Hi_Pore_C/"
+config_train["porec_dir_path"] = "raw_data/"+train_cell_line+"_hg38//hi_pore_c/"
 
 ###########################set by users########################
 
