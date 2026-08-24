@@ -44,6 +44,8 @@ chro = "chr0"
 
 ###########################set by users########################
 train_cell_line = "GM12878"
+test_cell_line = "H1"
+###########################set by users########################
 
 config_train["train_test_cell_name"] = train_cell_line+"_"+test_cell_line
 config_train["model_dir"] = "models/"+train_cell_line+"_"+test_cell_line+"_hypergcl"
@@ -55,7 +57,9 @@ config_train["porec_dir_path"] = "raw_data/"+train_cell_line+"_hg38//hi_pore_c/"
 
 config_train["bigwigs"] =  CELL_LINE_BIGWIGS[train_cell_line]
 
-###########################set by users########################
+config_test["hic_file"] = glob.glob("raw_data/"+test_cell_line+"_hg38/hic/")[0]
+config_test["bigwig_dir"] = "raw_data/"+test_cell_line+"_hg38/bigwigs/"
+config_test["bigwigs"] =  CELL_LINE_BIGWIGS[test_cell_line]
 
 config_train["dir_check"] = create_directories_if_not_exists(config_train["model_dir"])
 config_train["dir_check"] = create_directories_if_not_exists(config_train["hic_dir_path"] )
@@ -86,14 +90,6 @@ if train_cell_line == "GM12878":
 if train_cell_line == "K562":
     config_train["fc_ids"] = ["FC1", "FC2", "FC3", "FC4"]
 
-###########################set by users########################
-test_cell_line = "H1"
-
-config_test["hic_file"] = "raw_data/H1_hg38/4DNFID162B9J.hic"
-config_test["bigwig_dir"] = "raw_data/H1_hg38/bigwigs/"
-config_test["bigwigs"] =  CELL_LINE_BIGWIGS[test_cell_line]
-
-###########################set by users########################
 
 config_test["hic_dir_path"] = "data/"+test_cell_line+"_hg38/hic_mcool/"
 config_test["feature_dir_path"] = "data/"+test_cell_line+"_hg38/bigwig_features/"
