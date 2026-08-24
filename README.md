@@ -211,33 +211,12 @@ If you prefer to skip processing raw data, you can download the ready-to-use pro
    - Edit `config.py` with your dataset parameters:
      - Target cell lines (`train_cell_line` / `test_cell_line`).
      - File paths (`config_test["hic_file"]`, `config_test["bigwig_dir"]`, etc.).
-     - List of BigWig filenames (`config_test["bigwigs"]`, without extensions). Ensure the features follow this strict order:
-       **H3K4me3, H3K27ac, H3K27me3, H3K4me1, H3K36me3, H3K9me3, H3K9ac, H3K4me2, H4K20me1, H2AFZ, H3K79me2, CTCF, POLR2A, RAD21, ATAC**.
 
    **Example Configuration**:
    ```python
    ###########################set by users########################
-   test_cell_line = "H1"
-
-   config_test["hic_file"] = "raw_data/H1_hg38/4DNFID162B9J.hic"
-   config_test["bigwig_dir"] = "raw_data/H1_hg38/bigwigs/"
-   config_test["bigwigs"] = [
-       "ENCFF493QWY",
-       "ENCFF314KQD",
-       "ENCFF345VHG",
-       "ENCFF088MXE",
-       "ENCFF488THD",
-       "ENCFF183MHJ",
-       "ENCFF084JKQ",
-       "ENCFF860NVB",
-       "ENCFF156JZY",
-       "ENCFF296IBP",
-       "ENCFF401PZS",
-       "ENCFF648BTZ",
-       "ENCFF933YTR",
-       "ENCFF002NBT",
-       "4DNFICPNO4M5"
-   ]
+   train_cell_line = "GM12878"
+   test_cell_line = "K562"
    ###########################set by users########################
 
 ```
