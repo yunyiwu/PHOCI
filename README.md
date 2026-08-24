@@ -189,13 +189,29 @@ The `environment.yml` pins all essential packages for running PHOCI:
 
 ## Data Preparation
 
-1. **Configuration File Setup**:
-   - Prepare paths for Hi-C files (with `.hic` extension) and epigenomic data files (with `.bigWig` extension).
-   - Edit the `config.py` file with the following details:
-     - Test cell line name: `test_cell_line`.
-     - Hi-C file path: `config_test["hic_file"]`.
-     - Folder path for BigWig files: `config_test["bigwig_dir"]`.
-     - List of BigWig filenames: `config_test["bigwigs"]` (without file extensions). The list should follow this order:
+You can either download pre-processed datasets directly from Zenodo or build the datasets from raw files step by step.
+
+### Option A: Direct Download (Recommended)
+If you prefer to skip processing raw data, you can download the ready-to-use processed datasets for each cell line directly from Zenodo:
+- **Zenodo Link**: [Insert your Zenodo DOI / URL here]
+- Download and extract the archive into the `data/` directory.
+
+---
+
+### Option B: Build Datasets from Raw Data
+
+1. **Download Raw Data**:
+   - Run the provided script to download raw datasets (Hi-C, BigWig, and Pore-C alignment files):
+     ```bash
+     bash download_all_data.sh
+     ```
+
+2. **Configuration File Setup**:
+   - Prepare paths for Hi-C files (`.hic`) and epigenomic data (`.bigWig`).
+   - Edit `config.py` with your dataset parameters:
+     - Target cell lines (`train_cell_line` / `test_cell_line`).
+     - File paths (`config_test["hic_file"]`, `config_test["bigwig_dir"]`, etc.).
+     - List of BigWig filenames (`config_test["bigwigs"]`, without extensions). Ensure the features follow this strict order:
        **H3K4me3, H3K27ac, H3K27me3, H3K4me1, H3K36me3, H3K9me3, H3K9ac, H3K4me2, H4K20me1, H2AFZ, H3K79me2, CTCF, POLR2A, RAD21, ATAC**.
 
    **Example Configuration**:
@@ -223,11 +239,27 @@ The `environment.yml` pins all essential packages for running PHOCI:
        "4DNFICPNO4M5"
    ]
    ###########################set by users########################
-   ```
 
-2. **Run the Data Processing Script**:
-   - Execute the `run_data_process_for_prediction.py` script to process raw data.
-   - The processed files will be automatically saved in the `data` folder.
+```
+
+3. **Run Data Processing Scripts**:
+* **For Training Data Preprocessing**:
+Processes Hi-C matrices, BigWig features, Pore-C hypergraphs, and constructs graph datasets for model training:
+```bash
+python run_data_process_for_training.py
+
+```
+
+
+* **For Prediction/Inference Data Preprocessing**:
+Processes evaluation chromosome datasets and sliding window graphs:
+```bash
+python run_data_process_for_prediction.py
+
+```
+
+
+* All processed files will be automatically structured and saved under the corresponding data directories configured in `config.py`.
 
 ---
 
