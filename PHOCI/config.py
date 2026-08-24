@@ -17,15 +17,21 @@ chro = "chr0"
 ###########################set by users########################
 train_cell_line = "GM12878"
 
-
 config_train["train_test_cell_name"] = train_cell_line+"_"+test_cell_line
-
 config_train["model_dir"] = "models/"+train_cell_line+"_"+test_cell_line+"_hypergcl"
 
 config_train["hic_dir_path"] = "data/"+train_cell_line+"_hg38/hic_mcool/"
 config_train["feature_dir_path"] = "data/"+train_cell_line+"_hg38/bigwig_features/"
 config_train["input_graph_dir_path"] = "data/"+train_cell_line+"_hg38/input_graph/"
 config_train["porec_dir_path"] = "raw_data/"+train_cell_line+"_hg38/Hi_Pore_C/"
+
+###########################set by users########################
+
+config_train["dir_check"] = create_directories_if_not_exists(config_train["model_dir"])
+config_train["dir_check"] = create_directories_if_not_exists(config_train["hic_dir_path"] )
+config_train["dir_check"] = create_directories_if_not_exists(config_train["feature_dir_path"])
+config_train["dir_check"] = create_directories_if_not_exists(config_train["input_graph_dir_path"])
+config_train["dir_check"] = create_directories_if_not_exists(config_train["porec_dir_path"])
 
 config_train["edge_file_name"] = train_cell_line+f"_chr_{chro}_index_5000.npy"
 config_train["weight_file_name"] = train_cell_line+f"_chr_{chro}_attr_5000.npy"
