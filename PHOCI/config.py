@@ -43,7 +43,11 @@ config_train["chr_names"] = ["chr1", "chr2", "chr3", "chr4", "chr5", "chr6", "ch
 
 config_train["test_chr_names"] = ["chr13", "chr14", "chr15", "chrX", "chr22"]
 
+if train_cell_line = "GM12878":
+    config_train["fc_ids"] = ["FC1", "FC2", "FC3", "FC4", "FC5", "FC6", "FC7"]
 
+if train_cell_line = "K562":
+    config_train["fc_ids"] = ["FC1", "FC2", "FC3", "FC4"]
 
 ###########################set by users########################
 test_cell_line = "H1"
