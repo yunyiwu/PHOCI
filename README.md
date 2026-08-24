@@ -202,9 +202,9 @@ If you prefer to skip processing raw data, you can download the ready-to-use pro
 
 1. **Download Raw Data**:
    - Run the provided script to download raw datasets (Hi-C, BigWig, and Pore-C alignment files):
-     ```bash
-     bash download_all_data.sh
-     ```
+  ```bash
+  bash download_all_data.sh
+  ```
 
 2. **Configuration File Setup**:
    - Edit `config.py` with your dataset parameters:
