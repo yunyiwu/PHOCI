@@ -199,14 +199,6 @@ If you prefer to skip processing raw data, you can download the ready-to-use pro
    tar -xzvf PHOCI_processed_data.tar.gz
    ```
 
-**Options breakdown:**
-
-* **`-c`**: Create an archive
-* **`-z`**: Compress/decompress using gzip
-* **`-v`**: Display the compression/extraction process (Verbose, optional)
-* **`-f`**: Specify the filename of the archive
-
----
 
 ### Option B: Build Datasets from Raw Data
 
