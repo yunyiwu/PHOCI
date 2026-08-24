@@ -33,7 +33,8 @@ The following outlines the main files and directories in this project:
 |-- batch.py                      # Batch processing module
 |-- bigwig_process.py             # BigWig data processing for epigenomics
 |-- config.py                     # Configuration file
-|-- data_process_for_prediction.py    # Data processing script
+|-- data_process_for_prediction.py    # Data processing script for prediton
+|-- data_process_for_training.py    # Data processing script for training
 |-- encoder.py                    # Encoder module
 |-- environment.yml               # Conda environment configuration file
 |-- gene_position.py              # Gene position information utility
@@ -47,7 +48,9 @@ The following outlines the main files and directories in this project:
 |-- training.py                   # Training script using GM12878 cell-line as example
 |-- make_splits_val.py            # Negative sampling script
 |-- sampler.py                    # Negative sampling script
-`-- utils.py                      # General utility module
+|-- utils.py                      # General utility module
+`-- download_all_data.sh          # Script for download all raw data
+
 ```
 
 ---
