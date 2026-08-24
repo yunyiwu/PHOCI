@@ -207,9 +207,9 @@ If you prefer to skip processing raw data, you can download the ready-to-use pro
      ```
 
 2. **Configuration File Setup**:
-   - Prepare paths for Hi-C files (`.hic`) and epigenomic data (`.bigWig`).
    - Edit `config.py` with your dataset parameters:
      - Target cell lines (`train_cell_line` / `test_cell_line`).
+   - Check paths for Hi-C files (`.hic`) and epigenomic data (`.bigWig`).
      - File paths (`config_test["hic_file"]`, `config_test["bigwig_dir"]`, etc.).
 
    **Example Configuration**:
@@ -218,8 +218,7 @@ If you prefer to skip processing raw data, you can download the ready-to-use pro
    train_cell_line = "GM12878"
    test_cell_line = "K562"
    ###########################set by users########################
-
-```
+   ```
 
 3. **Run Data Processing Scripts**:
 * **For Training Data Preprocessing**:
@@ -228,7 +227,6 @@ Processes Hi-C matrices, BigWig features, Pore-C hypergraphs, and constructs gra
 python run_data_process_for_training.py
 
 ```
-
 
 * **For Prediction/Inference Data Preprocessing**:
 Processes evaluation chromosome datasets and sliding window graphs:
