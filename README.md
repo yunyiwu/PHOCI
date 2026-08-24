@@ -247,12 +247,12 @@ The `environment.yml` pins all essential packages for running PHOCI:
    gene_name = 'MYB'
 
    file_paths = {
-       'atac': "/public/home/wuyy/K562_hg38/bigwigs/ENCFF754EAC.bigWig",
-       'h3k27ac': "/public/home/wuyy/K562_hg38/bigwigs/ENCFF381NDD.bigWig",
-       'h3k4me1': "/public/home/wuyy/K562_hg38/bigwigs/ENCFF761XBZ.bigWig",
-       'ctcf': "/public/home/wuyy/K562_hg38/bigwigs/ENCFF675GVW.bigWig",
-       'rad21': "/public/home/wuyy/K562_hg38/bigwigs/ENCFF652NKM.bigWig",
-       'chrom_state': "/public/home/wuyy/K562_hg38/chrom_state/ENCFF319VXX.bigBed"
+       'atac': "raw_data/K562_hg38/bigwigs/ENCFF754EAC.bigWig",
+       'h3k27ac': "raw_data/K562_hg38/bigwigs/ENCFF381NDD.bigWig",
+       'h3k4me1': "raw_data/K562_hg38/bigwigs/ENCFF761XBZ.bigWig",
+       'ctcf': "raw_data/K562_hg38/bigwigs/ENCFF675GVW.bigWig",
+       'rad21': "raw_data/K562_hg38/bigwigs/ENCFF652NKM.bigWig",
+       'chrom_state': "annotation/ENCFF319VXX_K562.bigBed"
    }
 
    # If visualization is not needed:
