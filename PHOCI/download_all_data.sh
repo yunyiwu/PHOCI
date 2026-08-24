@@ -92,7 +92,7 @@ download_cell_line() {
   eval "local porec_urls=("\${${porec_ref}[@]}")"
 
   local hic_dir="${BASE_DIR}/${cell_line}/hic"
-  local epi_dir="${BASE_DIR}/${cell_line}/epigenomic"
+  local epi_dir="${BASE_DIR}/${cell_line}/bigwigs"
   local porec_dir="${BASE_DIR}/${cell_line}/hi_pore_c"
 
   echo "========================================================"
