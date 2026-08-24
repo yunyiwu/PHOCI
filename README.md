@@ -33,7 +33,7 @@ The following outlines the main files and directories in this project:
 |-- batch.py                      # Batch processing module
 |-- bigwig_process.py             # BigWig data processing for epigenomics
 |-- config.py                     # Configuration file
-|-- data_process_for_prediction.py    # Data processing script for prediton
+|-- data_process_for_prediction.py    # Data processing script for prediction
 |-- data_process_for_training.py    # Data processing script for training
 |-- encoder.py                    # Encoder module
 |-- environment.yml               # Conda environment configuration file
