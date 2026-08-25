@@ -193,7 +193,7 @@ You can either download pre-processed datasets directly from Zenodo or build the
 
 ### Option A: Direct Download (Recommended)
 If you prefer to skip processing raw data, you can download the ready-to-use processed datasets for each cell line directly from Zenodo:
-- **Zenodo Link**: [Insert your Zenodo DOI / URL here]
+- **Zenodo Link**: [https://doi.org/10.5281/zenodo.22076844]
 - Download and extract the archive into the `data/` directory.
    ```bash
    tar -xzvf PHOCI_processed_data.tar.gz
