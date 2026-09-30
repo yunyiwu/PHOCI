@@ -28,12 +28,12 @@ Before running the notebooks, please ensure you have configured the appropriate 
 | `Fig2(g-i).ipynb` | Figure 2 (g–i) | `PHOCI` | Standard execution |
 | `Fig2(j).ipynb` | Figure 2 (j) | `PHOCI` | Standard execution |
 | `Fig2(k).ipynb` | Figure 2 (k) | `PHOCI` | Standard execution |
-| `Fig2(m).ipynb` | Figure 2 (m) | `AlphaGenome` | Requires AlphaGenome environment |
+| `Fig2(m).ipynb` | Figure 2 (m) | `AlphaGenome` | Requires AlphaGenome environment and AlphaGenome Model Parameters|
 | `Fig3.ipynb` | Figure 3 | `PHOCI` | Requires TensorBoard export for UMAP; demonstrates a representative example |
 | `Fig4.ipynb` | Figure 4 | `PHOCI` | Standard execution |
 | `Fig5.ipynb` | Figure 5 | `PHOCI` | Plotting code only; requires pre-running PHOCI inference |
 | `Fig6(a).ipynb` | Figure 6 (a) | `PHOCI` | Plotting code only; requires pre-running PHOCI inference |
-| `Fig6(c,e,g)&FigS14.ipynb` | Figure 6 (c, e, g) & Fig S14 | `AlphaGenome` | Requires AlphaGenome environment |
+| `Fig6(c,e,g)&FigS14.ipynb` | Figure 6 (c, e, g) & Fig S14 | `AlphaGenome` | Requires AlphaGenome environment and AlphaGenome Model Parameters|
 
 ---
 
