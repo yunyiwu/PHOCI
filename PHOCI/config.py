@@ -45,7 +45,7 @@ chro = "chr0"
 ###########################set by users########################
 train_cell_line = "GM12878"
 test_cell_line = "GM12878"
-RAW_DATA_DIR = "/public3/home/wuyy"
+RAW_DATA_DIR = "/your/raw/data/dir"
 ###########################set by users########################
 
 config_train["train_test_cell_name"] = train_cell_line+"_"+test_cell_line
