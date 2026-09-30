@@ -44,7 +44,8 @@ chro = "chr0"
 
 ###########################set by users########################
 train_cell_line = "GM12878"
-test_cell_line = "H1"
+test_cell_line = "GM12878"
+RAW_DATA_DIR = "/public3/home/wuyy"
 ###########################set by users########################
 
 config_train["train_test_cell_name"] = train_cell_line+"_"+test_cell_line
@@ -53,12 +54,12 @@ config_train["model_dir"] = "models/"+train_cell_line+"_"+test_cell_line+"_hyper
 config_train["hic_dir_path"] = "data/"+train_cell_line+"_hg38/hic_mcool/"
 config_train["feature_dir_path"] = "data/"+train_cell_line+"_hg38/bigwig_features/"
 config_train["input_graph_dir_path"] = "data/"+train_cell_line+"_hg38/input_graph/"
-config_train["porec_dir_path"] = "raw_data/"+train_cell_line+"_hg38//hi_pore_c/"
+config_train["porec_dir_path"] = RAW_DATA_DIR+"/"+train_cell_line+"_hg38//hi_pore_c/"
 
 config_train["bigwigs"] =  CELL_LINE_BIGWIGS[train_cell_line]
 
-config_test["hic_file"] = glob.glob("raw_data/"+test_cell_line+"_hg38/hic/")[0]
-config_test["bigwig_dir"] = "raw_data/"+test_cell_line+"_hg38/bigwigs/"
+config_test["hic_file"] = glob.glob(RAW_DATA_DIR+"/"+test_cell_line+"_hg38/hic/")[0]
+config_test["bigwig_dir"] = RAW_DATA_DIR+"/"+test_cell_line+"_hg38/bigwigs/"
 config_test["bigwigs"] =  CELL_LINE_BIGWIGS[test_cell_line]
 
 config_train["dir_check"] = create_directories_if_not_exists(config_train["model_dir"])
