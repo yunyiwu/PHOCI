@@ -219,6 +219,7 @@ If you prefer to skip processing raw data, you can download the ready-to-use pro
    ###########################set by users########################
    train_cell_line = "GM12878"
    test_cell_line = "K562"
+   RAW_DATA_DIR = "/your/raw/data/dir"
    ###########################set by users########################
    ```
 
