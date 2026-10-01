@@ -60,5 +60,3 @@ Before running the notebooks, please ensure you have configured the appropriate 
 - Most required evaluation and plotting datasets are provided directly in this repository or associated Zenodo releases.
 - Due to file size limitations, a small fraction of raw/intermediate output data may not be fully included in the repository.
 - If you need additional raw data or intermediate files to reproduce specific figures, please feel free to reach out or open an issue.
-- Due to file size limitations, a small fraction of raw/intermediate output data may not be fully included in the repository.
-- If you need additional raw data or intermediate files to reproduce specific figures, please feel free to reach out or open an issue.
