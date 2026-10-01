@@ -40,19 +40,25 @@ Before running the notebooks, please ensure you have configured the appropriate 
 
 ## ⚠️ Important Usage Notes
 
-### 1. Generating Figure 2(a–c) Panels (`Fig2(a-c).ipynb`)
+### 1. AlphaGenome Environment Setup (`Fig2(m).ipynb` & `Fig6(c,e,g)&FigS14.ipynb`)
+- **Dedicated Environment:** `Fig2(m).ipynb` and `Fig6(c,e,g)&FigS14.ipynb` must be executed within the **AlphaGenome** conda/python environment rather than the default PHOCI environment.
+- **Reference Setup:** Please refer to the official [alphagenome_research](https://github.com/google-deepmind/alphagenome_research) repository to build and activate the required dependencies prior to running these two notebooks.
+
+### 2. Generating Figure 2(a–c) Panels (`Fig2(a-c).ipynb`)
 - `Fig2(a-c).ipynb` contains the full sequential code for generating **Figure 2(a)**.
 - To produce the results for **Figure 2(b)** and **Figure 2(c)**, you only need to modify the evaluation model parameter (`model_eval` model) in the notebook code.
 
-### 2. Intermediate TensorBoard Export & Example Run (`Fig3.ipynb`)
+### 3. Intermediate TensorBoard Export & Example Run (`Fig3.ipynb`)
 - **TensorBoard Projection:** Running `Fig3.ipynb` requires exporting intermediate embeddings into **TensorBoard** (TensorBoard Projector) to perform the **UMAP** dimensionality reduction and spatial layout visualization.
 - **Running Other Examples:** The provided notebook illustrates the complete pipeline using one representative example. You can reproduce results for other target cases or loci by modifying the corresponding configuration parameters within the notebook.
 
-### 3. Pre-computed Results Required (`Fig5.ipynb` & `Fig6(a).ipynb`)
+### 4. Pre-computed Results Required (`Fig5.ipynb` & `Fig6(a).ipynb`)
 - These notebooks contain visualization and plotting scripts designed for specific cell lines and genomic locus prediction results.
 - **Prerequisite:** You must first execute the main PHOCI prediction pipeline to generate the output prediction files for the corresponding cell lines and genes before executing these plotting scripts.
 
-### 4. Data Availability & Contact
+### 5. Data Availability & Contact
 - Most required evaluation and plotting datasets are provided directly in this repository or associated Zenodo releases.
+- Due to file size limitations, a small fraction of raw/intermediate output data may not be fully included in the repository.
+- If you need additional raw data or intermediate files to reproduce specific figures, please feel free to reach out or open an issue.
 - Due to file size limitations, a small fraction of raw/intermediate output data may not be fully included in the repository.
 - If you need additional raw data or intermediate files to reproduce specific figures, please feel free to reach out or open an issue.
