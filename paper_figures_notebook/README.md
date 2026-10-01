@@ -42,7 +42,7 @@ Before running the notebooks, please ensure you have configured the appropriate 
 
 ### 1. Generating Figure 2(a–c) Panels (`Fig2(a-c).ipynb`)
 - `Fig2(a-c).ipynb` contains the full sequential code for generating **Figure 2(a)**.
-- To produce the results for **Figure 2(b)** and **Figure 2(c)**, you only need to modify the evaluation model parameter (`eval` model) in the notebook code.
+- To produce the results for **Figure 2(b)** and **Figure 2(c)**, you only need to modify the evaluation model parameter (`model_eval` model) in the notebook code.
 
 ### 2. Intermediate TensorBoard Export & Example Run (`Fig3.ipynb`)
 - **TensorBoard Projection:** Running `Fig3.ipynb` requires exporting intermediate embeddings into **TensorBoard** (TensorBoard Projector) to perform the **UMAP** dimensionality reduction and spatial layout visualization.
