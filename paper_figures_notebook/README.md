@@ -24,7 +24,7 @@ Before running the notebooks, please ensure you have configured the appropriate 
 | Notebook | Corresponding Figures | Required Environment | Dependencies / Prerequisites |
 | :--- | :--- | :--- | :--- |
 | `Fig1(c-f).ipynb` | Figure 1 (c–f) | `PHOCI` | Standard execution |
-| `Fig2(a-c).ipynb` | Figure 2 (a–c) | `PHOCI` | Full pipeline for Fig 2(a); modify `eval` model parameter for Fig 2(b, c) |
+| `Fig2(a-c).ipynb` | Figure 2 (a–c) | `PHOCI` | Full pipeline for Fig 2(a); modify `model_eval` model parameter for Fig 2(b, c) |
 | `Fig2(d-f).ipynb` | Figure 2 (d–f) | `PHOCI` | Standard execution |
 | `Fig2(g-i).ipynb` | Figure 2 (g–i) | `PHOCI` | Standard execution |
 | `Fig2(j).ipynb` | Figure 2 (j) | `PHOCI` | Standard execution |
