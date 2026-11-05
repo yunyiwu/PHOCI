@@ -12,7 +12,7 @@ import numpy as np
 from sklearn import metrics
 
 from config import config_train
-import models
+from encoder import GCNEncoder
 from aggregator import MaxminMeanAggregator
 from batch import HEBatchGenerator, load_val
 
@@ -124,7 +124,7 @@ with open("chrom_data/K562/chr15_sliding_data", "rb") as f:
 
 model_dir = False
 
-model = models.GCNEncoder(input_dim, dim_vertex, dim_vertex, n_layers)
+model = GCNEncoder(input_dim, dim_vertex, dim_vertex, n_layers)
 model.to(device)
 
 if model_dir:
