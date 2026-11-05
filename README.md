@@ -57,6 +57,7 @@ The following outlines the main files and directories in this project:
 
 ## Quick Start
 
+
 ### Prerequisites
 
 Ensure you have [Conda](https://docs.conda.io/en/latest/miniconda.html) installed on your system.
@@ -184,6 +185,14 @@ The `environment.yml` pins all essential packages for running PHOCI:
 * **Data Visualization**: Matplotlib, Seaborn
 
 > **Note**: See `environment.yml` for the complete list of pinned dependencies.
+
+---
+
+## ⚙️ Important Note on File Paths & Configuration
+
+Before executing any script (including `training.py`, data processing scripts, or Jupyter notebooks), please ensure that:
+1. You have configured your target cell lines, data directories, and hyperparameters in **`config.py`**.
+2. Any hardcoded input/output paths within specific scripts are adjusted to match your local directory structure and environment.
 
 ---
 
