@@ -18,7 +18,7 @@ def porec_process(file_id: str):
     resolution = 5000
 
     # 1. Load chromosome sizes
-    chrom_sizes_file = "hg38_norm.chrom.sizes"
+    chrom_sizes_file = "annotation/hg38_norm.chrom.sizes"
     chrom_dict = pd.read_csv(
         chrom_sizes_file,
         sep="\t",
@@ -98,7 +98,3 @@ def porec_process(file_id: str):
 
         print(f"Successfully processed {chrom_name}, saved to: {output_path}")
 
-
-if __name__ == "__main__":
-    # Example usage:
-    porec_process(file_id="FC2")
