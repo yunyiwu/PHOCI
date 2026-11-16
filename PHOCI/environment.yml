@@ -35,6 +35,9 @@ dependencies:
       - pybigwig==0.3.22
       - pyfaidx==0.8.1.2
       - trackc==0.0.18
+      # Cooltools (PyPI default, or local wheel for Linux if needed):
+      - cooltools==0.7.1
+      # - ./third_party_packages/cooltools-0.7.1-cp38-cp38-linux_x86_64.whl
       # PyRanges compilation dependencies (Linux local wheels option if PyPI build fails):
       # - ./third_party_packages/ncls-0.0.71-cp38-cp38-linux_x86_64.whl
       # - ./third_party_packages/sorted_nearest-0.0.42-cp38-cp38-linux_x86_64.whl
