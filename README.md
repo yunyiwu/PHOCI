@@ -141,16 +141,26 @@ pip install torch-geometric==2.5.2 \
 ```
 
 
-* **Step 6: Install 3D genomics / Hi-C analysis tools**
+**Step 6: Install 3D genomics / Hi-C analysis tools**
+
 ```bash
 # Install general 3D genomics packages
 pip install cooler==0.9.3 bioframe==0.3.3 pybigwig==0.3.22 pyfaidx==0.8.1.2 trackc==0.0.18
+
+# Install pyranges (Option A: via PyPI; Option B: using pre-built wheels if compilation fails on Linux)
+# Option A: Standard PyPI installation
 pip install pyranges
 
-# Option A: Install hicstraw from PyPI
+# Option B: Install pre-built wheels for compilation dependencies first (Linux only, if PyPI build fails)
+# pip install third_party_packages/ncls-0.0.71-cp38-cp38-linux_x86_64.whl
+# pip install third_party_packages/sorted_nearest-0.0.42-cp38-cp38-linux_x86_64.whl
+# pip install pyranges
+
+# Install hicstraw (Option A: via PyPI; Option B: using pre-built wheel for Linux)
+# Option A: Standard PyPI installation
 pip install hicstraw
 
-# Option B: Install from a local pre-built wheel (if PyPI build fails, and for Linux only)
+# Option B: Local pre-built wheel installation (Linux only, if PyPI build fails)
 # pip install third_party_packages/hic_straw-1.3.1-cp38-cp38-linux_x86_64.whl
 ```
 
