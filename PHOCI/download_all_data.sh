@@ -1,6 +1,6 @@
 #!/bin/bash
 # ==============================================================================
-# Script: download_all_data.sh
+# Script: download_all_data.sh (Fixed Version)
 # Description: Download Hi-C (.hic), Epigenomic bigWig tracks, and Hi-Pore-C 
 #              alignment files, organizing them cleanly by cell line.
 # ==============================================================================
@@ -9,8 +9,6 @@ set -e # Exit immediately if a command exits with a non-zero status
 
 # Base output directory
 BASE_DIR="./raw_data"
-
-# Ensure base output directory exists
 mkdir -p "${BASE_DIR}"
 
 echo "=== Starting Full Dataset Download (Hi-C, Epigenomics & Hi-Pore-C) ==="
@@ -87,10 +85,6 @@ download_cell_line() {
   local epi_ref=$3
   local porec_ref=$4
 
-  # De-reference array variables passed by name
-  eval "local epi_files=("\${${epi_ref}[@]}")"
-  eval "local porec_urls=("\${${porec_ref}[@]}")"
-
   local hic_dir="${BASE_DIR}/${cell_line}/hic"
   local epi_dir="${BASE_DIR}/${cell_line}/bigwigs"
   local porec_dir="${BASE_DIR}/${cell_line}/hi_pore_c"
@@ -105,37 +99,42 @@ download_cell_line() {
     mkdir -p "${hic_dir}"
     echo "[1/3] Downloading Hi-C matrix for ${cell_line}..."
     local hic_filename=$(basename "${hic_url}")
-    wget -c -q --show-progress -O "${hic_dir}/${hic_filename}" "${hic_url}"
+    wget -c -q -O "${hic_dir}/${hic_filename}" "${hic_url}"
   fi
 
   # [2/3] Download Epigenomic Tracks
-  if [[ ${#epi_files[@]} -gt 0 ]]; then
-    mkdir -p "${epi_dir}"
-    echo "[2/2] Downloading Epigenomic tracks for ${cell_line}..."
-    for item in "${epi_files[@]}"; do
-      IFS=":" read -r acc feature <<< "${item}"
-      out_file="${epi_dir}/${acc}.bigWig"
-      
-      if [[ "${acc}" == 4DN* ]]; then
-        url="https://4dn-open-data-public.s3.amazonaws.com/fourfront-webprod/wfoutput/aa08799c-f06e-450e-ab63-d8a2a6157b52/${acc}.bw"
-      else
-        url="https://www.encodeproject.org/files/${acc}/@@download/${acc}.bigWig"
-      fi
+  if [[ -n "${epi_ref}" ]]; then
+    eval "local epi_files=(\"\${${epi_ref}[@]}\")"
+    if [[ ${#epi_files[@]} -gt 0 ]]; then
+      mkdir -p "${epi_dir}"
+      echo "[2/3] Downloading Epigenomic tracks for ${cell_line}..."
+      for item in "${epi_files[@]}"; do
+        IFS=":" read -r acc feature <<< "${item}"
+        out_file="${epi_dir}/${acc}.bigWig"
+        
+        if [[ "${acc}" == 4DN* ]]; then
+          url="https://4dn-open-data-public.s3.amazonaws.com/fourfront-webprod/wfoutput/aa08799c-f06e-450e-ab63-d8a2a6157b52/${acc}.bw"
+        else
+          url="https://www.encodeproject.org/files/${acc}/@@download/${acc}.bigWig"
+        fi
 
-      echo "  [+] Fetching ${feature} (${acc})..."
-      wget -c -q --show-progress -O "${out_file}" "${url}"
-    done
+        echo "  [+] Fetching ${feature} (${acc})..."
+        wget -c -q -O "${out_file}" "${url}"
+      done
+    fi
   fi
 
   # [3/3] Download Hi-Pore-C Files (with GEO redirect handling)
-  if [[ ${#porec_urls[@]} -gt 0 ]]; then
-    mkdir -p "${porec_dir}"
-    echo "[3/3] Downloading Hi-Pore-C alignments for ${cell_line}..."
-    for url in "${porec_urls[@]}"; do
-      echo "  [+] Fetching GEO file..."
-      # --trust-server-names automatically resolves URL encoding and 302 redirects from GEO
-      wget -c -q --show-progress --trust-server-names -P "${porec_dir}" "${url}"
-    done
+  if [[ -n "${porec_ref}" ]]; then
+    eval "local porec_urls=(\"\${${porec_ref}[@]}\")"
+    if [[ ${#porec_urls[@]} -gt 0 ]]; then
+      mkdir -p "${porec_dir}"
+      echo "[3/3] Downloading Hi-Pore-C alignments for ${cell_line}..."
+      for url in "${porec_urls[@]}"; do
+        echo "  [+] Fetching GEO file..."
+        wget -c -q --trust-server-names -P "${porec_dir}" "${url}"
+      done
+    fi
   fi
 
   echo ""
@@ -144,14 +143,10 @@ download_cell_line() {
 # ------------------------------------------------------------------------------
 # 4. Execute All Downloads
 # ------------------------------------------------------------------------------
-download_cell_line "GM12878"   "https://4dn-open-data-public.s3.amazonaws.com/fourfront-webprod/wfoutput/aa26f261-a88a-4cac-9118-ff8e90ab6f61/4DNFI9ZWZ5BS.hic"   "GM12878_EPI"   "GM12878_POREC"
-
-download_cell_line "K562"   "https://4dn-open-data-public.s3.amazonaws.com/fourfront-webprod/wfoutput/93b8e020-b337-4685-81dc-40cc8a12b5e9/4DNFIXU2KPNQ.hic"   "K562_EPI"   "K562_POREC"
-
-download_cell_line "A549"   "https://www.encodeproject.org/files/ENCFF689CUX/@@download/ENCFF689CUX.hic"   "A549_EPI"   ""
-
-download_cell_line "HepG2"   "https://4dn-open-data-public.s3.amazonaws.com/fourfront-webprod/wfoutput/25104375-a588-46e6-a382-663cee6c332f/4DNFICSTCJQZ.hic"   "HepG2_EPI"   ""
-
-download_cell_line "H1-hESC"   "https://4dn-open-data-public.s3.amazonaws.com/fourfront-webprod/wfoutput/bb3307fd-7162-477a-87c5-52f12d03befc/4DNFID162B9J.hic"   "H1_hESC_EPI"   ""
+download_cell_line "GM12878" "https://4dn-open-data-public.s3.amazonaws.com/fourfront-webprod/wfoutput/aa26f261-a88a-4cac-9118-ff8e90ab6f61/4DNFI9ZWZ5BS.hic" "GM12878_EPI" "GM12878_POREC"
+download_cell_line "K562"    "https://4dn-open-data-public.s3.amazonaws.com/fourfront-webprod/wfoutput/93b8e020-b337-4685-81dc-40cc8a12b5e9/4DNFIXU2KPNQ.hic" "K562_EPI"    "K562_POREC"
+download_cell_line "A549"    "https://www.encodeproject.org/files/ENCFF689CUX/@@download/ENCFF689CUX.hic"    "A549_EPI"    ""
+download_cell_line "HepG2"   "https://4dn-open-data-public.s3.amazonaws.com/fourfront-webprod/wfoutput/25104375-a588-46e6-a382-663cee6c332f/4DNFICSTCJQZ.hic" "HepG2_EPI"   ""
+download_cell_line "H1-hESC" "https://4dn-open-data-public.s3.amazonaws.com/fourfront-webprod/wfoutput/bb3307fd-7162-477a-87c5-52f12d03befc/4DNFID162B9J.hic" "H1_hESC_EPI" ""
 
 echo "=== All datasets downloaded successfully! ==="
