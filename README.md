@@ -145,6 +145,7 @@ pip install torch-geometric==2.5.2 \
 ```bash
 # Install general 3D genomics packages
 pip install cooler==0.9.3 bioframe==0.3.3 pybigwig==0.3.22 pyfaidx==0.8.1.2 trackc==0.0.18
+pip install pyranges
 
 # Option A: Install hicstraw from PyPI
 pip install hicstraw
