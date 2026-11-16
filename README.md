@@ -140,12 +140,18 @@ pip install torch-geometric==2.5.2 \
 
 ```
 
-
 **Step 6: Install 3D genomics / Hi-C analysis tools**
 
 ```bash
-# Install general 3D genomics packages
+# Install general 3D genomics packages (cooler, bioframe, pybigwig, pyfaidx, trackc)
 pip install cooler==0.9.3 bioframe==0.3.3 pybigwig==0.3.22 pyfaidx==0.8.1.2 trackc==0.0.18
+
+# Install cooltools (Option A: via PyPI; Option B: using pre-built wheel for Linux)
+# Option A: Standard PyPI installation
+pip install cooltools==0.7.1
+
+# Option B: Local pre-built wheel installation (Linux only, if PyPI build fails)
+# pip install third_party_packages/cooltools-0.7.1-cp38-cp38-linux_x86_64.whl
 
 # Install pyranges (Option A: via PyPI; Option B: using pre-built wheels if compilation fails on Linux)
 # Option A: Standard PyPI installation
