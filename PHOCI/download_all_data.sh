@@ -94,12 +94,12 @@ download_cell_line() {
   echo " Target Base: ${BASE_DIR}/${cell_line}"
   echo "========================================================"
 
-  # [1/3] Download Hi-C File via direct URL
+  # [1/3] Download Hi-C File via direct URL (去掉 -q 以显示进度)
   if [[ -n "${hic_url}" ]]; then
     mkdir -p "${hic_dir}"
-    echo "[1/3] Downloading Hi-C matrix for ${cell_line}..."
+    echo "[1/3] Downloading Hi-C matrix for ${cell_line} (this may take a while)..."
     local hic_filename=$(basename "${hic_url}")
-    wget -c -q -O "${hic_dir}/${hic_filename}" "${hic_url}"
+    wget -c -O "${hic_dir}/${hic_filename}" "${hic_url}"
   fi
 
   # [2/3] Download Epigenomic Tracks
@@ -119,12 +119,12 @@ download_cell_line() {
         fi
 
         echo "  [+] Fetching ${feature} (${acc})..."
-        wget -c -q -O "${out_file}" "${url}"
+        wget -c -O "${out_file}" "${url}"
       done
     fi
   fi
 
-  # [3/3] Download Hi-Pore-C Files (with GEO redirect handling)
+  # [3/3] Download Hi-Pore-C Files
   if [[ -n "${porec_ref}" ]]; then
     eval "local porec_urls=(\"\${${porec_ref}[@]}\")"
     if [[ ${#porec_urls[@]} -gt 0 ]]; then
@@ -132,7 +132,7 @@ download_cell_line() {
       echo "[3/3] Downloading Hi-Pore-C alignments for ${cell_line}..."
       for url in "${porec_urls[@]}"; do
         echo "  [+] Fetching GEO file..."
-        wget -c -q --trust-server-names -P "${porec_dir}" "${url}"
+        wget -c --trust-server-names -P "${porec_dir}" "${url}"
       done
     fi
   fi
