@@ -35,7 +35,7 @@ Before running the notebooks, please ensure you have configured the appropriate 
 | `Fig5.ipynb` | Figure 5 | `PHOCI` | Plotting code only; requires pre-running PHOCI inference |
 | `Fig6(a).ipynb` | Figure 6 (a) | `PHOCI` | Plotting code only; requires pre-running PHOCI inference |
 | `Fig6(c,e,g)&FigS14.ipynb` | Figure 6 (c, e, g) & Fig S14 | `AlphaGenome` | Requires AlphaGenome environment |
-
+| `TableS8,9,10.ipynb` | Table S8,9,10 | `PHOCI` | Standard execution |
 ---
 
 ## ⚠️ Important Usage Notes
