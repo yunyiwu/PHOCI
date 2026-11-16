@@ -5,7 +5,7 @@ import pickle
 from config import config_train
 from hic_process import hic_process
 from bigwig_process import bigwig_process
-from porec_process import porec_process
+from hiporec_data_preprocess import porec_process
 from data_process_for_training import data_process_all_chrom
 
 
