@@ -62,6 +62,7 @@ RUN pip install --no-cache-dir \
     pybigwig==0.3.22 \
     pyfaidx==0.8.1.2 \
     trackc==0.0.18
+RUN pip install --no-cache-dir pyranges
 
 # Copy local third-party wheel into the build stage for installation
 COPY third_party_packages/hic_straw-1.3.1-cp38-cp38-linux_x86_64.whl /tmp/
